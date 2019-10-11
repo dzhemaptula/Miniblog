@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, validators
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, validators, TextAreaField
 from wtforms.validators import DataRequired
 
 
@@ -24,3 +24,8 @@ class RegisterForm(FlaskForm):
         [validators.DataRequired(
             message='You have to agree to our Terms of Service.')])
     submit = SubmitField('Sign Up')
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Username', [validators.Length(min=4, max=25)])
+    about_me = TextAreaField('About me', [validators.Length(min=0, max=140)])
+    submit = SubmitField('Submit')
