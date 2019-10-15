@@ -3,10 +3,7 @@ from app import login
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-<<<<<<< HEAD
-=======
 from hashlib import md5
->>>>>>> master
 
 
 class User(UserMixin, db.Model):
