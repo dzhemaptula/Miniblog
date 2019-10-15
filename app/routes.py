@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-from app import app
-from app.forms import LoginForm
-from flask import render_template, flash, redirect, url_for
-from flask_login import current_user, login_user, logout_user
-from app.models import User
-=======
 from app import app, db
 from app.forms import LoginForm, RegisterForm, EditProfileForm
 from flask import render_template, flash, redirect, url_for, request
@@ -12,7 +5,6 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
 from datetime import datetime
->>>>>>> master
 
 @app.route('/')
 @app.route('/index')
@@ -37,11 +29,7 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-<<<<<<< HEAD
-        user = User.query.filter_by(username=form.username.data).firsst()
-=======
         user = User.query.filter_by(username=form.username.data).first()
->>>>>>> master
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
@@ -53,8 +41,6 @@ def login():
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
 
-<<<<<<< HEAD
-=======
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -68,13 +54,10 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Sign Up', form=form)
 
->>>>>>> master
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
-<<<<<<< HEAD
-=======
 
 @app.route('/user/<username>')
 @login_required
@@ -106,4 +89,3 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
->>>>>>> master
