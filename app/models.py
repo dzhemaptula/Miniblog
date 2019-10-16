@@ -63,10 +63,6 @@ class User(UserMixin, db.Model):
             Post.user_id == self.id)
         return followed.union(own).order_by(Post.timestamp.desc())
 
-    def get_posts_by_user_id(self, user_id):
-        return Post.query.filter(
-            Post.user_id == user_id)
-
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
